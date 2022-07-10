@@ -81,3 +81,33 @@ Union operations lock methods to those shared between types.
 If types don't share any methods in common then no methods will be available
 unless type is narrowed down with typeguard, then full access to a given type's
 method will be obtained
+
+------------------------------------------
+set up ts project
+------------------------------------------
+mkdir app
+cd app
+npm init -y
+tsc --init
+npm i nodemon concurrently
+mkdir src
+mkdir build
+inside src create index.ts
+edit tsconfig:
+uncomment-> 
+"rootDir": "./src"
+"outDir": "./build"
+edit package.json:
+add scripts:
+
+  "scripts": {
+      "start:build": "tsc -w",
+      "start:run": "nodemon build/index.js",
+      "start": "concurrently npm:start:*"
+  },
+-------------------------------------------
+Type def required whenever ts complains about not finding module
+type def files are often installed:
+npm i @types/modulename
+for modules of the node standard lib we use:
+npm i @types/node
